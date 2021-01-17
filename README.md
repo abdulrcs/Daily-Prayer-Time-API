@@ -21,7 +21,7 @@ Written in Python using _Flask, Beautiful Soup, and Google-Search-Python_.
 ```
 ## Get Started
 To use the API, you can simply fetch the data using the public API in  
-https://dailyprayer.abdulrcs.repl.co/api/(City Name)  
+https://dailyprayer.abdulrcs.repl.co/api/ (City Name)  
 ## Here's an example 😉
 ### Print the Data in Python:
 ```python
