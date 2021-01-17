@@ -3,7 +3,7 @@
   <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/facebook/230/mosque_1f54c.png" >
 </p>  
 
-It's an easy to use API to get today's prayer time based on **Muslim Pro.**  
+It's an easy to use API to get today's prayer time for your next project! (based on **Muslim Pro**)  
 Written in Python using _Flask, Beautiful Soup, and Google-Search-Python_.
 ### Example Response:
 ```json
