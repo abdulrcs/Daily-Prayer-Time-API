@@ -1,12 +1,13 @@
-import googlesearch
 import requests
 from bs4 import BeautifulSoup
 from flask import Flask, jsonify
 from threading import Thread
 import json
-
+from os import system
+import googlesearch
 app = Flask('')
 app.config['JSON_SORT_KEYS'] = False
+
 @app.route('/')	
 def home():
 	return  "I'm alive"
@@ -26,11 +27,16 @@ def prayer(s):
     data["city"] = city.get_text()
     tanggal = dates.get_text().split()
     data["date"] = tanggal[0] + " " + month.get_text()
-    data["prayers"] = {}
+    data["today"] = {}
+    data["tomorrow"] = {}
     waktu = soup.find_all("span", attrs ={"class": "waktu-solat"})
     jam = soup.find_all("span", attrs ={"class": "jam-solat"})
+    names = ["Date","Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha'a"]
+    tomorrow = soup.find("tr", attrs={"class": "active"}).find_next("tr").find_all("td", attrs={"class": "prayertime"})
     for x,y in zip(waktu,jam):
-      data["prayers"][x.get_text()] = y.get_text()
+      data["today"][x.get_text()] = y.get_text()
+    for x,y in zip(names,tomorrow):
+      data["tomorrow"][x] = y.get_text()
   except :
     data["Error"] = "Result Not Found"
   return jsonify(data)
