@@ -3,20 +3,30 @@
   <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/facebook/230/mosque_1f54c.png" >
 </p>  
 
-It's an easy to use API to get today's prayer time for your next project! (based on **Muslim Pro**)  
+It's an easy to use API to get today's (and tomorrow!) prayer time for your next project! (based on **Muslim Pro**)  
 Written in Python using _Flask, Beautiful Soup, and Google-Search-Python_.
 ### Example Response:
 ```json
 {
-    "city": "Mecca",
-    "date": "17 January 2021",
-    "prayers": {
-        "Fajr": "05:41",
-        "Sunrise": "07:01",
-        "Dhuhr": "12:31",
-        "Asr": "15:39",
-        "Maghrib": "18:01",
-        "Isha'a": "19:31"
+  "city": "Mecca",
+  "date": "25 March 2021",
+  "today": {
+    "Fajr": "05:04",
+    "Sunrise": "06:20",
+    "Dhuhr": "12:27",
+    "Asr": "15:52",
+    "Maghrib": "18:34",
+    "Isha'a": "20:04"
+  },
+  "tomorrow": {
+    "Date": "Fri 26 Mar",
+    "Fajr": "05:03",
+    "Sunrise": "06:19",
+    "Dhuhr": "12:27",
+    "Asr": "15:52",
+    "Maghrib": "18:34",
+    "Isha'a": "20:04"
+  }
 }
 ```
 ## Get Started
@@ -33,8 +43,11 @@ response = requests.get(url)
 data = response.json()
 print(data['city'])
 print(data['date'])
-for prayer in data["prayers"]:
-  print(prayer + ": " + data["prayers"][prayer])  
+for prayer in data["today"]:
+  print(prayer + ": " + data["today"][prayer])  
+# If you want to request for tomorrow prayer's time:
+# for prayer in data["tomorrow"]:
+#  print(prayer + ": " + data["tomorrow"][prayer])
 ```
 
 ### Print the Data in Node.js:
@@ -54,8 +67,8 @@ https.get(url,(res) => {
             let json = JSON.parse(body);
             console.log(json["city"])
             console.log(json["date"])
-            for(prayer in json["prayers"])
-              console.log(prayer + ": " + json["prayers"][prayer])
+            for(prayer in json["today"])
+              console.log(prayer + ": " + json["today"][prayer])
         } catch (error) {
             console.error(error.message);
         };
