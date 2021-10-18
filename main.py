@@ -34,7 +34,7 @@ def prayer(s):
     jam = soup.find_all("span", attrs ={"class": "jam-solat"})
     for x,y in zip(waktu,jam):
       data["today"][x.get_text()] = y.get_text()
-    names = ["Date","Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha'a"]
+    names = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha'a"]
     try:
       tomorrow = soup.find("tr", attrs={"class": "active"}).find_next("tr").find_all("td", attrs={"class": "prayertime"})
       for x,y in zip(names,tomorrow):
