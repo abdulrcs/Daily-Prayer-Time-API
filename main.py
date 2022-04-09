@@ -1,9 +1,7 @@
 import requests
 from flask import Flask, jsonify
 from threading import Thread
-import json
-from os import system
-import googlesearch
+from duckduckgo_search import ddg
 from bs4 import BeautifulSoup
 import dateparser
 app = Flask('')
@@ -17,17 +15,15 @@ def home():
 def prayer(s):
   query = str(s + " prayer time site:muslimpro.com")
   data = {}
-  mencari = googlesearch.search(query)
+  urls = ddg(query, max_results=1)
   try :
-    url = str(mencari[0])
+    url = urls[0]['href']
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
-    city = soup.find("h2", attrs ={"class": "place"})
-    dates = soup.find("h2", attrs ={"class": "date"})
-    month = soup.find("span", attrs ={"class": "display-month"})
+    city = soup.find("p", attrs ={"class": "location"})
+    dates = soup.find("div", attrs ={"class": "prayer-daily-title-location"})
     data["city"] = city.get_text()
-    tanggal = dates.get_text().split()
-    data["date"] = tanggal[0] + " " + month.get_text()
+    data["date"] = dates.get_text()
     data["today"] = {}
     data["tomorrow"] = {}
     waktu = soup.find_all("span", attrs ={"class": "waktu-solat"})
@@ -47,7 +43,8 @@ def prayer(s):
       tomorrow = soup.find_all("tr")[1].find_all("td", attrs={"class": "prayertime"})
       for x,y in zip(names,tomorrow):
         data["tomorrow"][x] = y.get_text()
-  except :
+  except Exception as e:
+    print(e)
     data["Error"] = "Result Not Found"
   return jsonify(data)
 
