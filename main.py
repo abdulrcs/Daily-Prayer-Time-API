@@ -1,10 +1,13 @@
 import requests
 from flask import Flask, jsonify
+from flask_cors import CORS, cross_origin
 from threading import Thread
 from duckduckgo_search import ddg
 from bs4 import BeautifulSoup
 import dateparser
 app = Flask('')
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['JSON_SORT_KEYS'] = False
 
 @app.route('/')	
@@ -12,6 +15,7 @@ def home():
 	return  "I'm alive"
 
 @app.route('/api/<string:s>', methods=['GET'])
+@cross_origin(origin='*')
 def prayer(s):
   query = str(s + " prayer time site:muslimpro.com")
   data = {}
