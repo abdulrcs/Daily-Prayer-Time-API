@@ -12,7 +12,7 @@ app.config['JSON_SORT_KEYS'] = False
 
 @app.route('/')	
 def home():
-	return  "I'm alive"
+	return  "I'm Dumb"
 
 @app.route('/api/<string:s>', methods=['GET'])
 @cross_origin(origin='*')
