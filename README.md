@@ -1,15 +1,15 @@
 ﻿# Daily Prayer Time API 🌙
 <p align="center">
-  <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/facebook/230/mosque_1f54c.png" >
+  <img src="https://abdulrahman.id/_next/image?url=https%3A%2F%2Fimagizer.imageshack.com%2Fa%2Fimg924%2F3623%2FZbOifo.png&w=1920&q=75">
 </p>  
 
 It's an easy to use API to get today's (and tomorrow!) prayer time for your next project! (based on **Muslim Pro**)  
-Written in Python using _Flask, Beautiful Soup, and Google-Search-Python_.
+Written in Python using _Flask, Beautiful Soup, and duckduckgo_search_.
 ### Example Response:
 ```json
 {
   "city": "Mecca",
-  "date": "25 March 2021",
+  "date": "25 March 2024",
   "today": {
     "Fajr": "05:04",
     "Sunrise": "06:20",
@@ -32,6 +32,11 @@ Written in Python using _Flask, Beautiful Soup, and Google-Search-Python_.
 ## Get Started
 To use the API, you can simply fetch the data using the public API in  
 https://dailyprayer.abdulrcs.repl.co/api/ (City Name)  
+
+> note: currently the `dailyprayer.abdulrcs.repl.co/api/` doesn't work since Repl.it has migrated it's link to a new one
+> but you can always still fork the repo, spin up the main.py yourself, and self-host the Daily Prayer Time API yourself :) 
+
+
 ## Here's an example 😉
 ### Print the Data in Python:
 ```python
@@ -81,7 +86,7 @@ https.get(url,(res) => {
 ### Output:
 ```
 Singapore
-17 January 2021
+17 January 2024
 Fajr: 05:52
 Sunrise: 07:14
 Dhuhr: 13:17
